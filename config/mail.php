@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'infobeasiswaipb@gmail.com'),
-        'name' => env('MAIL_FROM_NAME', 'Info Beasiswa IPB'),
+        'address' => 'infobeasiswaipb@gmail.com',
+        'name' => 'Info Beasiswa IPB',
     ],
 
     /*

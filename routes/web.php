@@ -34,31 +34,31 @@ Route::get('/description/{id}', 'UserController@viewDescription')->name('descrip
 
 //emaul all user with conditions
 //ini buat user yang baru ngisi ipk dll, tempel di tombol update profile user
-Route::get('/video', function() {
-$requirement = App\requirement::latest()->first();
-$mytime = Carbon\Carbon::now();
-$mytime = Carbon\Carbon::parse($mytime);
-$mytime = $mytime->toDateString();
-
-$user = App\Userinfo::latest()->first();
-$a = strpos($requirement->getAttribute('program'), $user->getAttribute('program'));
-dd($a);
-
-// foreach (App\requirement::all() as $requirement) {
-//   $deadline = $requirement->getAttribute('deadline');
-//   if(Carbon\Carbon::parse($deadline)->gt($mytime)) {
-//       echo $requirement->getAttribute('id');
-//   }
-// }
-// foreach (App\Userinfo::all() as $user) {
-//   if($user->getAttribute('faculty') == $requirement->getAttribute('faculty') and
-//   $user->getAttribute('gda') >= $requirement->getAttribute('gda') and
-//   $user->getAttribute('semester') == $requirement->getAttribute('semester') and
-//   $user->getAttribute('program') == $requirement->getAttribute('program')) {
-//     $user->notify(new TutorialPublished($user));
-//   }
-// }
-});
+// Route::get('/video', function() {
+// $requirement = App\requirement::latest()->first();
+// $mytime = Carbon\Carbon::now();
+// $mytime = Carbon\Carbon::parse($mytime);
+// $mytime = $mytime->toDateString();
+//
+// $user = App\Userinfo::latest()->first();
+// $a = strpos($requirement->getAttribute('program'), $user->getAttribute('program'));
+// dd($a);
+//
+// // foreach (App\requirement::all() as $requirement) {
+// //   $deadline = $requirement->getAttribute('deadline');
+// //   if(Carbon\Carbon::parse($deadline)->gt($mytime)) {
+// //       echo $requirement->getAttribute('id');
+// //   }
+// // }
+// // foreach (App\Userinfo::all() as $user) {
+// //   if($user->getAttribute('faculty') == $requirement->getAttribute('faculty') and
+// //   $user->getAttribute('gda') >= $requirement->getAttribute('gda') and
+// //   $user->getAttribute('semester') == $requirement->getAttribute('semester') and
+// //   $user->getAttribute('program') == $requirement->getAttribute('program')) {
+// //     $user->notify(new TutorialPublished($user));
+// //   }
+// // }
+// });
 
 Route::get('login', function () {
     return view('login');
