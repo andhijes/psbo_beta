@@ -19,21 +19,50 @@
 @endsection()
 
 @section('content')
-        @foreach($readScholarship as $scholarship)
-          <div class="post-preview">
-              <a href="{{ route('description.viewDescription', $scholarship->id) }}">
-                  <h2 class="post-title">
-                    {{$scholarship->name}}
-                  </h2>
+
+    {{-- <section class="section blog-area">
+      <div class="container">
+        <div class="row"> --}}
+          {{-- <div class="col-md-12 col-sm-12 col-xs-12"> --}}
+            <div class="col-md-9 col-sm-9 col-xs-9">
+            
+              @foreach($readScholarship as $scholarship)
+              <div class="post-preview">
+                <a href="{{ route('description.viewDescription', $scholarship->id) }}">
+                <h3 class="post-subtitle">
+                {{$scholarship->name}}
+                </h3>
+              {{-- <h4 class="post-subtitle"> --}}
+                {{$scholarship->firm}}
+              {{-- </h4> --}}
                 </a>
-                {{-- <h3 class="post-subtitle"> --}}
-                    {{$scholarship->firm}}
-                {{-- </h3> --}}
-            <p class="post-meta">Posted by
-              {{$scholarship->getDay()}} {{$scholarship->getMonth()}}</p>
+                <p class="post-meta">Posted by
+                {{$scholarship->getDay()}} {{$scholarship->getMonth()}}</p>
+              </div>
+              <hr>
+              @endforeach
           </div>
-          <hr>
-        @endforeach
+          <div class="col-md-1 col-sm-1 col-xs-1">
+          </div>
+          <div class="col-md-3 col-sm-3 col-xs-3">
+                <div class="sidebar-section tags-area">
+                    <h4 class="title"><b class="light-color">Tags</b></h4>
+                    <ul class="tags">
+                        <li><a class="btn" href="#">design</a></li>
+                        <li><a class="btn" href="#">fasinon</a></li>
+                        <li><a class="btn" href="#">travel</a></li>
+                        <li><a class="btn" href="#">music</a></li>
+                        <li><a class="btn" href="#">video</a></li>
+                        <li><a class="btn" href="#">photography</a></li>
+                        <li><a class="btn" href="#">adventure</a></li>
+                    </ul>
+                </div><!-- sidebar-section tags-area -->
+            </div>
+          {{-- </div> --}}
+        {{-- </div>
+      </div>
+    </section> --}}
+        
           <!-- Pager -->
           <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>

@@ -18,21 +18,31 @@
 @endsection()
 
 @section('content')
-        @foreach($readScholarship as $scholarship)
-          <div class="post-preview">
-            <a href="{{ route('description.viewDescription', $scholarship->id) }}">
-              <h2 class="post-title">
+  @foreach($readScholarship as $scholarship)
+    <section class="section blog-area">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-12">
+            <div class="blog-posts">
+              <div class="post-preview">
+                <a href="{{ route('description.viewDescription', $scholarship->id) }}">
+                <h3 class="post-subtitle">
                 {{$scholarship->name}}
-              </h2>
-              <h3 class="post-subtitle">
-              {{$scholarship->firm}}
-              </h3>
-            </a>
-            <p class="post-meta">Posted by
-              {{$scholarship->getDay()}} {{$scholarship->getMonth()}}</p>
+                </h3>
+              {{-- <h4 class="post-subtitle"> --}}
+                {{$scholarship->firm}}
+              {{-- </h4> --}}
+                </a>
+                <p class="post-meta">Posted by
+                {{$scholarship->getDay()}} {{$scholarship->getMonth()}}</p>
+              </div>
+              <hr>
+            </div>
           </div>
-          <hr>
-        @endforeach
+        </div>
+      </div>
+    </section>
+  @endforeach
           <!-- Pager -->
           <div class="clearfix">
             <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
