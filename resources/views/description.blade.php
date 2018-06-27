@@ -26,7 +26,8 @@
     <article>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
+          <div class=".col-xs-6 .col-sm-8 .col-lg-10">
+              {{--  .col-xs-6 .col-sm-8 .col-lg-10  --}}
               {!! $scholarships->description !!}
             <div class="form-group">
                 <div class="col-md-9 col-md-offset-1">
