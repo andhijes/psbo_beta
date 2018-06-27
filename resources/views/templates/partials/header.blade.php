@@ -53,7 +53,7 @@
                   <a class="nav-link" href="matchme">Match me</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="editProfile">Edit Profile</a>
+                  <a class="nav-link" href="{{route('user.viewProfile')}}">Edit Profile</a>
               </li>
               <li class="nav-item dropdown">
                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

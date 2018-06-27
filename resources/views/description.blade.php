@@ -2,16 +2,13 @@
 
 @section('header')
      <!-- Page Header -->
-     <header class="masthead" style="background-image: url({!! asset('assets/img/post-bg.jpg') !!})">
+     <header class="masthead" style="background-image: url({!! asset('assets/img/ipb.jpg') !!})">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="post-heading">
-              <h1>{{$scholarships->name}}</h1>
-              <h2 class="subheading">{{$scholarships->firm}}</h2>
-              <span class="meta">Posted by
-                  {{$scholarships->getDay()}} {{$scholarships->getMonth()}}</span>
+             
             </div>
           </div>
         </div>
@@ -26,7 +23,14 @@
     <article>
       <div class="container">
         <div class="row">
+          <div>
+              <h4>{{$scholarships->name}}</h4>
+              <h2 class="subheading">{{$scholarships->firm}}</h2>
+              <span class="meta">Posted by
+              {{$scholarships->getDay()}} {{$scholarships->getMonth()}}</span>
+          </div>
           <div class=".col-xs-6 .col-sm-8 .col-lg-10">
+            
               {{--  .col-xs-6 .col-sm-8 .col-lg-10  --}}
               {!! $scholarships->description !!}
             <div class="form-group">
