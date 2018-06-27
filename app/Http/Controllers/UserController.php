@@ -26,9 +26,17 @@ class UserController extends Controller
 
     public function updateProfile(Request $request)
     {
-        // dd()
-        $user = Auth::user();
-        // dd($user);        
+        $user = Auth::user();   
+
+        if($request->file('avatar') != null){
+            Storage::delete($user->avatar);
+            $image  = $request->file('avatar')->store('avatar/students');
+        } else{
+            $image  = $user->avatar;
+        }
+
+
+        
         $user->update([
             'name'          => $request->input('name'),
             'email'         => $request->input('email'),
@@ -39,6 +47,7 @@ class UserController extends Controller
             'semester'      => $request->input('semester'),
             'program'       => $request->input('program'),
             'telephon'      => $request->input('telephon'),
+            'avatar'        => $image,
         ]);
         session()->flash('success', 'Edit Profile Succesful!');
         return redirect()->back();

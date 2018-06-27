@@ -2,13 +2,13 @@
 
 @section('header')
      <!-- Page Header -->
-     <header class="masthead" style="background-image: url({!! asset('assets/img/ipb.jpg') !!})">
+     <header class="masthead" style="background-image: url({!! asset('assets/img/ipba.jpg') !!})">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="col-md-8 col-sm-8 col-xs-8">
             <div class="post-heading">
-             
+                <h3>"Searching and Serving The Best"</h3>
             </div>
           </div>
         </div>
@@ -25,9 +25,9 @@
         <div class="row">
           <div>
               <h4>{{$scholarships->name}}</h4>
-              <h2 class="subheading">{{$scholarships->firm}}</h2>
-              <span class="meta">Posted by
-              {{$scholarships->getDay()}} {{$scholarships->getMonth()}}</span>
+              {{-- <h2 class="subheading">{{$scholarships->firm}}</h2> --}}
+              <span class="meta"><small>Posted on</small>
+              {{$scholarships->getDate()}}</span>
           </div>
           <div class=".col-xs-6 .col-sm-8 .col-lg-10">
             

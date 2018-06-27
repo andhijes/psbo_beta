@@ -25,6 +25,7 @@ class CreateUsersTable extends Migration
             $table->integer('semester')->nullable();
             $table->string('program')->nullable();
             $table->string('telephon')->nullable();
+            $table->string('avatar')->nullable()->default(null);
             $table->rememberToken();
             $table->timestamps();
         });
