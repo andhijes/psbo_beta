@@ -15,6 +15,7 @@
     //return view('welcome');
 //});
 
+<<<<<<< HEAD
 Route::get('/', 'UserController@readScholarship');
 
 Route::get('/home', 'UserController@readScholarship');
@@ -24,6 +25,11 @@ Route::get('/editProfile', 'UserController@viewProfile')->name('user.viewProfile
 Route::patch('/editProfile', 'UserController@updateProfile')->name('user.updateProfile');
 
 Route::get('/description/{id}', 'UserController@viewDescription')->name('description.viewDescription');
+=======
+Route::get('/', function () {
+    return view('index');
+});
+>>>>>>> 2ce37fad0abe069acaf84e8499d402b03c9b0971
 
 Route::get('login', function () {
     return view('login');
@@ -33,12 +39,19 @@ Route::get('register', function () {
     return view('register');
 });
 
+<<<<<<< HEAD
 Route::get('matchme', function () {
     return view('matchme');
 });
 
 Auth::routes();
 
+=======
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+>>>>>>> 2ce37fad0abe069acaf84e8499d402b03c9b0971
 Route::prefix('admin')->group(function(){
     Route::get('/profile', 'AdminController@profile')->name('admin.profile');
     Route::patch('/profile', 'AdminController@update')->name('admin.update'); 
