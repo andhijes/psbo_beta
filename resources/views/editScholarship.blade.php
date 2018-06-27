@@ -9,19 +9,19 @@
 @section('content')
     <div class="x_panel">
         <div class="x_title">
-            <h2>Edit Beasiswa</h2>
+            <h2>Edit Scholarship</h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
             <br />
             <form class="form-horizontal form-label-left" action="{{ route('editScholarship.update', $scholarships->id) }}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    {{ method_field('PATCH') }} 
-                      
-                   
+                    {{ method_field('PATCH') }}
+
+
                     <div class="form-group">
-                        
-                        <label class="control-label col-md-2">Poster Beasiswa
+
+                        <label class="control-label col-md-2">Scholarship Image
                         </label>
                         <div class="col-md-4">
                           <img src="{{$scholarships->getImage()}}" alt="" style="width:200px;height:250px;">
@@ -34,7 +34,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2">Nama Beasiswa
+                        <label class="control-label col-md-2">Scholarship Name
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Perusahaan 
+                        <label class="control-label col-md-2">Company
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                      <label class="control-label col-md-2">Program 
+                      <label class="control-label col-md-2">Program
                         <span class="required">*</span>
                       </label>
                       <div class="col-md-9">
@@ -65,23 +65,23 @@
                       <input type="text" class="form-control" name="semester" value="{{ $requirements->semester }}">
                       </div>
                    </div>
-        
+
                   <div class="form-group">
-                    <label class="control-label col-md-2">Fakultas </label>
+                    <label class="control-label col-md-2">Faculty </label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="faculty" value="{{ $requirements->faculty }}">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Minimum IPK</label>
+                    <label class="control-label col-md-2">Minimum GPA</label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="gda" value="{{ $requirements->gda }}">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Batas Pendaftaran 
+                    <label class="control-label col-md-2">Registration Limit
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-9">
@@ -95,7 +95,7 @@
                         <select class="tags form-control select2-multi" tabindex="-1" multiple="multiple" name="tags[]">
                           @foreach ($tags as $tag)
                             <option value="{{$tag->id}}">{{$tag->name}}</option>
-                          @endforeach 
+                          @endforeach
                         </select>
                         <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
@@ -103,9 +103,9 @@
 
                     {{--  {{ Form::label('tags', 'Tags:', ['class' => 'form-spacing-top']) }}
               			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}   --}}
-                    
+
                   <div class="item form-group">
-                    <label class="control-label col-md-2" for="textarea">Deskripsi <span class="required">*</span>
+                    <label class="control-label col-md-2" for="textarea">Scholarship Description <span class="required">*</span>
                     </label>
                     <div class="col-md-9">
                       <textarea id="konten" required="required" name="description" class="form-control col-md-9 col-xs-12">
@@ -113,14 +113,14 @@
                       </textarea>
                     </div>
                   </div>
-              
+
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-2">
                         <a href="{{ route('scholarship.read') }}" class="btn btn-danger">Cancel</a>
                         <button type="submit" class="btn btn-success">Update</button>
                         </div>
                     </div>
-              </form>               
+              </form>
         </div>
     </div>
 

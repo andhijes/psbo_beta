@@ -13,6 +13,12 @@ use View;
 use Storage;
 use Auth;
 use Carbon\Carbon;
+use App\Notifications\TutorialPublished;
+use Illuminate\Support\Collection;
+use App\Userinfo;
+session()->regenerate();
+error_reporting(0);
+
 
 class ScholarshipController extends Controller
 {
@@ -28,7 +34,7 @@ class ScholarshipController extends Controller
 
         return view('/scholarship', compact('readScholarship'));
     }
-    public function create() 
+    public function create()
     {
         $tags   = tag::all();
         return view('/addScholarship', compact('tags'));
@@ -37,10 +43,10 @@ class ScholarshipController extends Controller
     public function store(Request $request)
     {
         // change format dd-mm-yyyy to yyyy-mm-dd
-    
+
         $tanggal    = $request->deadline;
         $date       = date("Y-m-d", strtotime($tanggal));
-       
+
         $program    = $request->d3.';'.$request->s1.';'.$request->s2;
         // dd($program);
         // $splitProgram = explode(';', $program, 3);
@@ -51,7 +57,7 @@ class ScholarshipController extends Controller
         } else{
             $image  = null;
         }
-        
+
         $scholarships   = scholarship::create([
             'name'          => $request->input('name'),
             'firm'          => $request->input('firm'),
@@ -68,9 +74,9 @@ class ScholarshipController extends Controller
             'faculty'    => $request->input('faculty'),
             'program'    => $program
         ]);
-        
+
         $scholarships->tags()->sync($request->tags, false);
-        
+
         // if(isset($request->tags)){
         //     $scholarships->tags()->sync($request->tags);
         // }else{
@@ -78,7 +84,26 @@ class ScholarshipController extends Controller
         // }
 
         // $scholarships = scholarship::where('name', $nama)->orderBy('created_at','desc')->first();
-        
+
+        //kode jopan ngirim notif email ke semua user yg memenuhi syarat
+      $meong = $request->input('name');
+      $terakhir = requirement::latest()->first();
+      foreach (Userinfo::all() as $user) {
+        $aa = $user->getAttribute('name');
+        $a = strpos($program, $user->getAttribute('program'));
+        if($user->getAttribute('faculty') == $request->input('faculty') and
+        $user->getAttribute('gda') >= $request->input('gda') and
+        $user->getAttribute('semester') == $request->input('semester') and
+        $a >= 0) {
+          $request->session()->put('namaa', $aa);
+          $request->session()->put('nama', $meong);
+          session()->put('flag', '1');
+          session()->put('id', $terakhir->getAttribute('id'));
+          $user->notify(new TutorialPublished($user));
+        }
+      }
+      //sampe sini
+
         session()->flash('success', 'Scholarship succesful added!');
         return redirect()->route('scholarship.read');
     }
@@ -97,7 +122,7 @@ class ScholarshipController extends Controller
     {
         // find scholarship
         $updateScholarship = scholarship::find($id);
-       
+
         if($request->file('image') != null){
             Storage::delete($updateScholarship->image);
             $image  = $request->file('image')->store('beasiswa');
@@ -128,7 +153,7 @@ class ScholarshipController extends Controller
         }
 
         session()->flash('notif', 'Edit Succesful!');
-        
+
         return redirect()->route('scholarship.view', compact('id'));
     }
 
@@ -151,7 +176,7 @@ class ScholarshipController extends Controller
         return view('admin.scholarshipView', compact('scholarships', 'requirements'));
     }
 
-    public function test($type) 
+    public function test($type)
     {
         switch ($type) {
             case 'message':
@@ -180,5 +205,5 @@ class ScholarshipController extends Controller
         // alert()->message('Sweet Alert with message.');
         return view('/test');
     }
-    
+
 }

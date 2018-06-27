@@ -9,16 +9,16 @@
 @section('content')
     <div class="x_panel">
         <div class="x_title">
-            <h2>Tambah Beasiswa</h2>
+            <h2>Add Scholarship</h2>
             <div class="clearfix"></div>
             </div>
             <div class="x_content">
             <br />
             <form class="form-horizontal form-label-left" action="{{ route('addScholarship.store') }}" method="post"  enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    
+
                     <div class="form-group">
-                        <label class="control-label col-md-2">Poster Beasiswa
+                        <label class="control-label col-md-2">Scholarship Image
                         </label>
                         <div class="col-md-4">
                         {{--  <input type="file" class="form-control" name="name" placeholder="Nama Beasiswa" class="form-control col-md-9 col-xs-12">  --}}
@@ -27,7 +27,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="control-label col-md-2">Nama Beasiswa
+                        <label class="control-label col-md-2">Scholarship Name
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-md-2">Perusahaan 
+                        <label class="control-label col-md-2">Company
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
@@ -45,21 +45,21 @@
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-2">Program 
+                      <label class="control-label col-md-2">Program
                         <span class="required">*</span>
                       </label>
                       <div class="col-md-9">
                           <div class="form-check form-check-inline">
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="D3" name="d3">
                               <label class="form-check-label" for="inlineCheckbox1">D3</label>
-                             
+
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S1" name="s1">
                               <label class="form-check-label" for="inlineCheckbox1">S1</label>
 
                               <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S2" name="s2">
                               <label class="form-check-label" for="inlineCheckbox1">S2</label>
 
-                              
+
                           </div>
                       </div>
                     </div>
@@ -71,23 +71,23 @@
                       <input type="text" class="form-control" name="semester" placeholder="1-2" required="required">
                       </div>
                    </div>
-        
+
                   <div class="form-group">
-                    <label class="control-label col-md-2">Fakultas </label>
+                    <label class="control-label col-md-2">Faculty </label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="faculty" placeholder="FMIPA, FATETA" required="required">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Minimum IPK</label>
+                    <label class="control-label col-md-2">Minimum GPA</label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="gda" placeholder="2.7" required="required">
                     </div>
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Batas Pendaftaran 
+                    <label class="control-label col-md-2">Registration Limit
                       <span class="required">*</span>
                     </label>
                     <div class="col-md-9">
@@ -99,10 +99,10 @@
                         format: 'dd-mm-yyyy',
                         todayHighlight:'TRUE',
                         autoclose: true
-                      });    
+                      });
                     </script>
                   </div>
-                  
+
 
 
                     <div class="control-group">
@@ -111,17 +111,17 @@
                         <select class="tags form-control select2-multi" tabindex="-1" multiple="multiple" name="tags[]">
                           @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                          @endforeach 
+                          @endforeach
                         </select>
                         <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
                     </div>
                   {{--  </div>  --}}
-                  
 
-                  
+
+
                   <div class="form-group">
-                      
+
                   <div class="item form-group">
                     <label class="control-label col-md-2" for="textarea">Deskripsi <span class="required">*</span>
                     </label>
@@ -130,15 +130,15 @@
                     </div>
                   </div>
                  </div>
-              
+
                     <div class="form-group">
                         <div class="col-md-9 col-sm-9 col-xs-12 col-md-offset-3">
                         <button type="submit" class="btn btn-success">Submit</button>
                         </div>
                     </div>
 
-                    
-                    </form>       
+
+                    </form>
         </div>
     </div>
 

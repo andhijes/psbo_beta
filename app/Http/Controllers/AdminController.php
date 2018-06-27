@@ -26,10 +26,10 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
+
     public function profile()
     {
-       
+
         $admins         = Auth::user();
         $scholarships   = $admins->scholarship()->get();
         return view('admin.profile', compact('scholarships', 'admins'));
@@ -52,7 +52,7 @@ class AdminController extends Controller
 
         return redirect()->back();
     }
-    
+
      public function index()
     {
         $id             = Auth::user()->id;
@@ -72,7 +72,7 @@ class AdminController extends Controller
             $image  = $admins->avatar;
         }
 
-        
+
         $admins->update([
             'name'          => $request->input('name'),
             'email'         => $request->input('email'),
@@ -92,25 +92,25 @@ class AdminController extends Controller
             // The passwords matches
             session()->flash('invalidPassword', 'Your current password does not matches with the password you provided. Please try again.');
             return redirect()->back();
-            
+
         }
- 
+
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             //Current password and new password are same
             session()->flash('invalidPassword', 'New Password cannot be same as your current password. Please choose a different password.');
             return redirect()->back();
         }
- 
+
         $validatedData = $request->validate([
             'current-password' => 'required',
             'new-password' => 'required|string|min:6|confirmed',
         ]);
- 
+
         //Change Password
         $user = Auth::user();
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
-        
+
         session()->flash('passwordChanged', 'Your Password Has Been Changed.');
         return redirect()->back();
     }
