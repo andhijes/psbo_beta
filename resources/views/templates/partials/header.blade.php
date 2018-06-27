@@ -10,26 +10,27 @@
 
     <title>Info Beasiswa IPB</title>
 
-    <!-- Bootstrap core CSS -->
-    {{-- <link href="{!! asset('assets/vendor/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet"> --}}
-
-    <link href= "{{ asset('assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
-
-    <!-- Custom fonts for this template -->
-    <link href="{{ asset('assets/admin/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
-    {{-- <link href="{!! asset('assets/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css"> --}}
+    <!-- Bootstrap core CSS user-->
+    {{-- <link href="{!! asset('assets/vendor/bootstrap/css/bootstrap.min.css') !!}" rel="stylesheet">
+    <link href="{!! asset('assets/vendor/font-awesome/css/font-awesome.min.css') !!}" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href="{!! asset('assets/css/clean-blog.min.css') !!}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}" defer></script> --}}
+    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 
-    <!-- Custom styles for this template -->
-    {{-- <link href="{!! asset('assets/css/clean-blog.min.css') !!}" rel="stylesheet"> --}}
+    <!-- Bootstrap core CSS admin-->
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href= "{{ asset('assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/admin/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href="{{ asset('assets/css/clean-blog.min.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}" defer></script>
-   
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="{{ asset('js/app.js') }}" defer></script>
 
-    {{-- dari admin --}}
-    
-    {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
+   
 
   </head>
 
@@ -58,7 +59,7 @@
                   <a class="nav-link" href="matchme">Match me</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="{{route('user.viewProfile')}}">Edit Profile</a>
+                  <a class="nav-link" href="editProfile">Edit Profile</a>
               </li>
               <li class="nav-item dropdown">
                   <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
