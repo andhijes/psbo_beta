@@ -48,13 +48,11 @@
                 <div class="sidebar-section tags-area">
                     <h4 class="title"><b class="light-color">Tags</b></h4>
                     <ul class="tags">
-                        <li><a class="btn" href="#">design</a></li>
-                        <li><a class="btn" href="#">fasinon</a></li>
-                        <li><a class="btn" href="#">travel</a></li>
-                        <li><a class="btn" href="#">music</a></li>
-                        <li><a class="btn" href="#">video</a></li>
-                        <li><a class="btn" href="#">photography</a></li>
-                        <li><a class="btn" href="#">adventure</a></li>
+                      @foreach ($tags as $tag)
+                        <li><a class="btn" href="{{ route('user.explore', $tag->id) }}">{{$tag->name}}</a></li>    
+                      @endforeach  
+                      
+                        
                     </ul>
                 </div><!-- sidebar-section tags-area -->
             </div>
@@ -64,8 +62,16 @@
     </section> --}}
         
           <!-- Pager -->
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-7 col-sm-7 col-xs-7">
+
+      </div>
+      <div class="col-md-2 col-sm-2 col-xs-2">
           <div class="clearfix">
-            <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-          </div>
+              <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+            </div>
+      </div>
+        
+    </div>
 
 @endsection()

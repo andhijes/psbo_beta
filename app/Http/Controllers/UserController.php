@@ -7,14 +7,29 @@ use App\scholarship;
 use App\User;
 use Auth;
 use Storage;
+use App\Tag;
 
 class UserController extends Controller
 {
     public function readScholarship()
     {
         $readScholarship = scholarship::orderBy('created_at', 'desc')->get();
-        return view('/index', compact('readScholarship'));
-        return view('/home', compact('readScholarship'));
+        $tags   = tag::all();
+        // dd($tags);
+        return view('/index', compact('readScholarship', 'tags'));
+        return view('/home', compact('readScholarship', 'tags'));
+    }
+
+    public function scholarshipExplore($id)
+    {
+        $tag    = Tag::find($id);
+        $tags   = tag::all();
+
+        $a= $tag->scholarships;
+        $jumlah = count($a);
+        // dd($b);
+        // dd($tag->scholarships);
+        return view('/scholarshipExplore', compact('tag', 'tags','jumlah'));
     }
 
     public function viewProfile()

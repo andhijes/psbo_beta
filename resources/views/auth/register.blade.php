@@ -2,13 +2,13 @@
 
 @section('header')
 
-    <header class="masthead" style="background-image: url({!! asset('assets/img/about-bg.jpg') !!})">
+    <header class="masthead" style="background-image: url({!! asset('assets/img/ipba.jpg') !!})">
         <div class="overlay"></div>
         <div class="container">
             <div class="row">
-            <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="col-md-8 col-sm-8 col-xs-8">
                 <div class="site-heading">
-                <h1>Register</h1>
+                        <h3>"Searching and Serving The Best"</h3>
                 </div>
             </div>
             </div>

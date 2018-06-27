@@ -32,6 +32,8 @@ Route::patch('/editProfile', 'UserController@updateProfile')->name('user.updateP
 
 Route::get('/description/{id}', 'UserController@viewDescription')->name('description.viewDescription');
 
+Route::get('/scholarship/{id}', 'UserController@scholarshipExplore')->name('user.explore');
+
 //emaul all user with conditions
 //ini buat user yang baru ngisi ipk dll, tempel di tombol update profile user
 // Route::get('/video', function() {
