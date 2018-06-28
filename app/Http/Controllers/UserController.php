@@ -75,8 +75,9 @@ class UserController extends Controller
         // dd($scholarships)
         // $requirements   = $scholarships->requirement;
         $requirements   = $scholarships->requirement;
+        $tags    = Tag::all();
         // $array_require = json_decode(json_encode($requirements), True);
         // dd($scholarships->tags());
-        return view('description', compact('scholarships', 'requirements'));
+        return view('description', compact('scholarships', 'requirements', 'tags'));
     }
 }

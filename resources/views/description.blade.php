@@ -17,24 +17,19 @@
 @endsection()
 
 @section('content')
-  <body>
-   
-    <!-- Post Content -->
-    <article>
+{{-- <section class="section blog-area">
       <div class="container">
-        <div class="row">
-          <div>
-              <h4>{{$scholarships->name}}</h4>
-              {{-- <h2 class="subheading">{{$scholarships->firm}}</h2> --}}
-              <span class="meta"><small>Posted on</small>
-              {{$scholarships->getDate()}}</span>
-          </div>
-          <div class=".col-xs-6 .col-sm-8 .col-lg-10">
-            
-              {{--  .col-xs-6 .col-sm-8 .col-lg-10  --}}
-              {!! $scholarships->description !!}
+        <div class="row"> --}}
+          {{-- <div class="col-md-12 col-sm-12 col-xs-12"> --}}
+            <div class="col-md-9 col-sm-9 col-xs-9">
+                <h4>{{$scholarships->name}}</h4>
+                {{-- <h2 class="subheading">{{$scholarships->firm}}</h2> --}}
+                <span class="meta"><small>Posted on</small>
+                {{$scholarships->getDate()}}</span>
+
+                {!! $scholarships->description !!}
             <div class="form-group">
-                <div class="col-md-9 col-md-offset-1">
+                <div class="col-md-9">
                   <b>Syarat:</b>
                   <ul>
                     <li>Program     : {{$requirements->program}} </li>
@@ -43,29 +38,45 @@
                     <li>IPK minimal : {{$requirements->gda}} </li>
                   </ul>
                 </div>
-
-            <a href="#">
-              <img class="img-fluid" src="{{$scholarships->image}}" alt="">
-            </a>
-
-            <p>Placeholder text by
-              <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by
-              <a href="https://www.flickr.com/photos/nasacommons/">NASA on The Commons</a>.</p>
-          </div>
-        </div>
-      </div>
-    </article>
-
-    <hr>
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Custom scripts for this template -->
-    <script src="js/clean-blog.min.js"></script>
-
-  </body>
+            </div>
+            </div>
+            {{-- <div class=""></div> --}}
+                  <div class="col-md-1 col-sm-1 col-xs-1">
+                  </div>
+                  <div class="col-md-3 col-sm-3 col-xs-3">
+                        <div class="sidebar-section tags-area">
+                            <h4 class="title"><b class="light-color">Tags</b></h4>
+                            <ul class="tags">
+                              @foreach ($tags as $tag)
+                                <li><a class="btn" href="{{ route('user.explore', $tag->id) }}">{{$tag->name}}</a></li>    
+                              @endforeach  
+                              
+                                
+                            </ul>
+                        </div><!-- sidebar-section tags-area -->
+                    </div>
+                  {{-- </div> --}}
+                {{-- </div>
+              </div>
+            </section> --}}
+                
+                  <!-- Pager -->
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="col-md-7 col-sm-7 col-xs-7">
+        
+              </div>
+        
+              @if (jumlah != 0)
+                  <div class="col-md-2 col-sm-2 col-xs-2">
+                      <div class="clearfix">
+                          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
+                      </div>
+                  </div>
+              @endif
+              
+                
+            </div>
+ 
   @endsection()
 
-</html>
+
