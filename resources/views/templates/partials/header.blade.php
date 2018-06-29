@@ -20,6 +20,8 @@
     {{-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> --}}
 
     <!-- Bootstrap core CSS admin-->
+    <link href= "{{ asset('css/parsley.css') }}" rel="stylesheet">
+    <link href= "{{ asset('css/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href= "{{ asset('assets/admin/vendors/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/admin/vendors/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">

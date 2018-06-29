@@ -49,29 +49,68 @@
                         <input type="text" class="form-control" name="firm" value="{{ $scholarships->firm }}">
                         </div>
                     </div>
+                    
                     <div class="form-group">
-                      <label class="control-label col-md-2">Program
-                        <span class="required">*</span>
-                      </label>
+                      <label class="control-label col-md-2">Program</label>
                       <div class="col-md-9">
-                      <input type="text" class="form-control" name="program" value="{{ $requirements->program }}">
+                        <select class="tags form-control program-multi" tabindex="-1" multiple="multiple" name="programs[]">
+                    
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                    
+                        </select>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label class="control-label col-md-2">Semester
-                        <span class="required">*</span>
-                      </label>
-                      <div class="col-md-9">
-                      <input type="text" class="form-control" name="semester" value="{{ $requirements->semester }}">
-                      </div>
-                   </div>
 
-                  <div class="form-group">
-                    <label class="control-label col-md-2">Faculty </label>
+                    <div class="form-group">
+                      <label class="control-label col-md-2">Semester</label>
+                      <div class="col-md-9">
+                        <select class="tags form-control semester-multi" tabindex="-1" multiple="multiple" name="semesters[]">
+                    
+                            <option value="1;2;3;4;5;6">1-6</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">1</option>
+                            <option value="8">2</option>
+                    
+                        </select>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
+                      </div>
+                    </div>
+
+                    
+
+
+
+                   <div class="form-group">
+                    <label class="control-label col-md-2">Faculty</label>
                     <div class="col-md-9">
-                    <input type="text" class="form-control" name="faculty" value="{{ $requirements->faculty }}">
+                      <select class="tags form-control faculty-multi" tabindex="-1" multiple="multiple" name="faculties[]">
+                  
+                          <option value="FAPERTA,FKH,FPIK,FAPET,FAHUTAN,FATETA,FMIPA,FEM,FEMA,DIPLOMA,SB">Semua Fakultas</option>
+                          <option value="FAPERTA">A - Fakultas Pertanian</option>
+                          <option value="FKH">B - Fakultas Kedokteran Hewan</option>
+                          <option value="FPIK">C - Fakultas Perikanan dan Ilmu Kelautan</option>
+                          <option value="FAPET">D - Fakultas Peternakan</option>
+                          <option value="FAHUTAN">E - Fakultas Kehutanan</option>
+                          <option value="FATETA">F - Fakultas Teknologi Pertanian</option>
+                          <option value="FMIPA">G - Fakultas Matematikan dan Ilmu Pengetahuan</option>
+                          <option value="FEM">H - Fakultas Ekonomi Manajemen</option>
+                          <option value="FEMA">I - Fakultas Ekologi Manusia</option>
+                          <option value="DIPLOMA">J - Diploma</option>
+                          <option value="SB">Sekolah Bisnis</option>
+                          
+                      </select>
+                      <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                     </div>
                   </div>
+
 
                   <div class="form-group">
                     <label class="control-label col-md-2">Minimum GPA</label>
@@ -101,8 +140,6 @@
                       </div>
                     </div>
 
-                    {{--  {{ Form::label('tags', 'Tags:', ['class' => 'form-spacing-top']) }}
-              			{{ Form::select('tags[]', $tags, null, ['class' => 'form-control select2-multi', 'multiple' => 'multiple']) }}   --}}
 
                   <div class="item form-group">
                     <label class="control-label col-md-2" for="textarea">Scholarship Description <span class="required">*</span>
@@ -135,5 +172,22 @@
 	<script type="text/javascript">
 		$('.select2-multi').select2();
 		$('.select2-multi').select2().val({!! json_encode($scholarships->tags()->allRelatedIds()) !!}).trigger('change');
-	</script>
+  </script>
+
+  <script type="text/javascript">
+		$('.faculty-multi').select2();
+		$('.faculty-multi').select2().val({!! json_encode($faculties) !!}).trigger('change');
+  </script>
+
+  <script type="text/javascript">
+		$('.program-multi').select2();
+		$('.program-multi').select2().val({!! json_encode($programs) !!}).trigger('change');
+  </script>
+
+  <script type="text/javascript">
+		$('.semester-multi').select2();
+		$('.semester-multi').select2().val({!! json_encode($semesters) !!}).trigger('change');
+  </script>
+  
+
 @endsection

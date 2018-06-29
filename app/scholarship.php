@@ -81,5 +81,10 @@ class scholarship extends Model
     {
         return $this->belongsToMany(Tag::class);
     }
+
+    protected function getScholarship($id){
+        $scholarship = scholarship::find($id);
+        return $scholarship;
+    }
 }
 

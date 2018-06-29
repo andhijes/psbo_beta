@@ -42,15 +42,18 @@ class ScholarshipController extends Controller
 
     public function store(Request $request)
     {
-        // change format dd-mm-yyyy to yyyy-mm-dd
+        $this->validate($request, array(
+            'name'   =>  'required|min:9|max:191'
+        ));
 
+
+        
+        $faculty    = implode(",", $request->faculties);
+        $program    = implode(";", $request->programs);
+        $semester   = implode(",", $request->semesters);
         $tanggal    = $request->deadline;
-        $date       = date("Y-m-d", strtotime($tanggal));
 
-        $program    = $request->d3.';'.$request->s1.';'.$request->s2;
-        // dd($program);
-        // $splitProgram = explode(';', $program, 3);
-        // dd($splitProgram[1]);
+        $date       = date("Y-m-d", strtotime($tanggal));
 
         if($request->file('image') != null){
             $image  = $request->file('image')->store('beasiswa');
@@ -69,40 +72,13 @@ class ScholarshipController extends Controller
 
         $scholarships->requirement()->create([
             'gda'        => $request->input('gda'),
-            'semester'   => $request->input('semester'),
+            'semester'   => $semester,
             'deadline'   => $date,
-            'faculty'    => $request->input('faculty'),
+            'faculty'    => $faculty,
             'program'    => $program
         ]);
 
         $scholarships->tags()->sync($request->tags, false);
-
-        // if(isset($request->tags)){
-        //     $scholarships->tags()->sync($request->tags);
-        // }else{
-        //     $scholarships->tags()->sync(array());
-        // }
-
-        // $scholarships = scholarship::where('name', $nama)->orderBy('created_at','desc')->first();
-
-        //kode jopan ngirim notif email ke semua user yg memenuhi syarat
-      $meong = $request->input('name');
-      $terakhir = requirement::latest()->first();
-      foreach (Userinfo::all() as $user) {
-        $aa = $user->getAttribute('name');
-        $a = strpos($program, $user->getAttribute('program'));
-        if($user->getAttribute('faculty') == $request->input('faculty') and
-        $user->getAttribute('gda') >= $request->input('gda') and
-        $user->getAttribute('semester') == $request->input('semester') and
-        $a >= 0) {
-          $request->session()->put('namaa', $aa);
-          $request->session()->put('nama', $meong);
-          session()->put('flag', '1');
-          session()->put('id', $terakhir->getAttribute('id'));
-          $user->notify(new TutorialPublished($user));
-        }
-      }
-      //sampe sini
 
         session()->flash('success', 'Scholarship succesful added!');
         return redirect()->route('scholarship.read');
@@ -112,9 +88,18 @@ class ScholarshipController extends Controller
     {
         $scholarships   = scholarship::find($id);
         $requirements   = $scholarships->requirement;
+        
+        $faculty        = $requirements->faculty;
+        $faculties      = explode(',', $faculty);
+
+        $program        = $requirements->program;
+        $programs       = explode(';', $program);
+
+        $semester       = $requirements->semester;
+        $semesters      = explode(',', $semester);
         $tags = Tag::all();
 
-        return view('/editScholarship', compact('scholarships', 'requirements','tags'));
+        return view('/editScholarship', compact('scholarships', 'requirements','tags', 'faculties','programs', 'semesters'));
 
     }
 
@@ -160,7 +145,10 @@ class ScholarshipController extends Controller
     public function destroy($id)
     {
         $scholarships   = scholarship::find($id);
-        $scholarships->requirement->delete();
+        if($scholarships->requirements != null){
+             $scholarships->requirement->delete();
+        }
+       
         $scholarships->tags()->detach();
         $scholarships->delete();
         session()->flash('deleteNotif', 'Delete Succesful!');
@@ -171,8 +159,7 @@ class ScholarshipController extends Controller
     {
         $scholarships   = scholarship::find($id);
         $requirements   = $scholarships->requirement;
-        // $array_require = json_decode(json_encode($requirements), True);
-        // dd($scholarships->tags());
+        // $array_require = json_decode(json_encode($requirements), True); 
         return view('admin.scholarshipView', compact('scholarships', 'requirements'));
     }
 

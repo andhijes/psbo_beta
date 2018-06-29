@@ -8,6 +8,7 @@ use App\User;
 use Auth;
 use Storage;
 use App\Tag;
+use App\Rules\ValidPhone;
 
 class UserController extends Controller
 {
@@ -42,6 +43,18 @@ class UserController extends Controller
     public function updateProfile(Request $request)
     {
         $user = Auth::user();   
+
+        $this->validate($request, array(
+            'name'          => 'required|max:100',
+            'email'         => 'required|unique:users,email,'.$user->id,
+            'nim'           => 'required|unique:users,nim,'.$user->id,
+            'department'    => 'required',
+            'faculty'       => 'required',
+            'gda'           => 'required',
+            'semester'      => 'required',
+            'program'       => 'required',
+            'telephon'      => ['required', new ValidPhone],
+        ));
 
         if($request->file('avatar') != null){
             Storage::delete($user->avatar);

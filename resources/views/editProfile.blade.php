@@ -22,14 +22,6 @@
         {{-- <div class="row"> --}}
            
           <!-- left column -->
-          {{-- <div class="col-md-4">
-            <div class="text-center">
-              <img src="//placehold.it/100" class="avatar img-circle" alt="avatar">
-              <h6>Upload a different photo...</h6>
-              
-              <input type="file" class="form-control">
-            </div>
-          </div> --}}
 
           
          
@@ -50,16 +42,28 @@
                   
               </div>
           </div>
-          <div class="col-md-6 col-sm-6 col-xs-6">
-
+          <div class="col-md-7 col-sm-7 co-xs-7">
             {{-- alert --}}
               <div class="alert alert-info alert-dismissable">
-                  <a class="panel-close close" data-dismiss="alert">×</a> 
-                  <i class="fa fa-coffee"></i>
-                  Edit profile untuk mencoba fitur match me.
-              </div>
+                <a class="panel-close close" data-dismiss="alert">×</a> 
+                <i class="fa fa-coffee"></i>
+                Edit profile untuk mencoba fitur match me.
+            </div>
 
-              @if (session()->has('success'))
+            @if (count($errors) > 0)
+              <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                </button>
+                <strong>Errors:</strong>
+                <ul>
+                @foreach ($errors->all() as $error)
+                  <li>{{ $error }}</li>
+                @endforeach  
+                </ul>
+              </div>
+            @endif
+
+            @if (session()->has('success'))
               <div class="alert alert-success alert-dismissible fade in" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
                 </button>
@@ -67,7 +71,9 @@
               </div>
             @endif
 
-            {{-- end alert --}}
+          {{-- end alert --}}
+          </div>
+          <div class="col-md-6 col-sm-6 col-xs-6">
             
 
               <form class="form-horizontal" method="post" action="{{ route('user.updateProfile') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data" >
@@ -102,36 +108,40 @@
                     <input class="form-control" type="text" name="nim" value="{{$user->nim}}">
                   </div>
                 </div>
+                
+               
+                    <select class="tags form-control faculty-multi" tabindex="-1" multiple="multiple" name="faculties[]">
+                
+                        <option value="FAPERTA,FKH,FPIK,FAPET,FAHUTAN,FATETA,FMIPA,FEM,FEMA,DIPLOMA,SB">Semua Fakultas</option>
+                        <option value="FAPERTA">A - Fakultas Pertanian</option>
+                        <option value="FKH">B - Fakultas Kedokteran Hewan</option>
+                        <option value="FPIK">C - Fakultas Perikanan dan Ilmu Kelautan</option>
+                        <option value="FAPET">D - Fakultas Peternakan</option>
+                        <option value="FAHUTAN">E - Fakultas Kehutanan</option>
+                        <option value="FATETA">F - Fakultas Teknologi Pertanian</option>
+                        <option value="FMIPA">G - Fakultas Matematikan dan Ilmu Pengetahuan</option>
+                        <option value="FEM">H - Fakultas Ekonomi Manajemen</option>
+                        <option value="FEMA">I - Fakultas Ekologi Manusia</option>
+                        <option value="DIPLOMA">J - Diploma</option>
+                        <option value="SB">Sekolah Bisnis</option>
+                        
+                    </select>
+                  
+
                 <div class="form-group">
                   <label class="col-md-4 control-label">Departemen:</label>
                   <div class="col-md-8">
                     <input class="form-control" type="text" name="department" value="{{$user->department}}">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-4 control-label">Fakultas:</label>
-                  <div class="col-md-8">
-                    <input class="form-control" type="text" name="faculty" value="{{$user->faculty}}">
-                  </div>
-                </div>
+               
                 <div class="form-group">
                   <label class="col-md-4 control-label">IPK:</label>
                   <div class="col-md-8">
                     <input class="form-control" type="text" name="gda" value="{{$user->gda}}">
                   </div>
                 </div>
-                <div class="form-group">
-                  <label class="col-md-4 control-label">Semester:</label>
-                  <div class="col-md-8">
-                      <input class="form-control" type="text" name="semester" value="{{$user->semester}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label class="col-md-4 control-label">Program:</label>
-                  <div class="col-md-8">
-                      <input class="form-control" type="text" name="program" value="{{$user->program}}">
-                  </div>
-                </div>
+                
                 <div class="form-group">
                   <label class="col-md-4 control-label">Telepon:</label>
                   <div class="col-md-8">
@@ -155,4 +165,30 @@
           </div>
       </div>
     {{-- </div> --}}
-@endsection()
+@endsection
+
+@section('script')
+  <script src="{{ asset('js/select2.min.js') }}"></script>
+  <script src="{{ asset('js/parsley.min.js') }}"></script>
+	<script type="text/javascript">
+		$('.select2-multi').select2();
+		
+  </script>
+
+  <script type="text/javascript">
+		$('.faculty-multi').select2();
+		
+  </script>
+
+  <script type="text/javascript">
+		$('.program-multi').select2();
+		
+  </script>
+
+  <script type="text/javascript">
+		$('.semester-multi').select2();
+		
+  </script>
+  
+
+@endsection

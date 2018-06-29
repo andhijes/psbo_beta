@@ -21,7 +21,6 @@
                         <label class="control-label col-md-2">Scholarship Image
                         </label>
                         <div class="col-md-4">
-                        {{--  <input type="file" class="form-control" name="name" placeholder="Nama Beasiswa" class="form-control col-md-9 col-xs-12">  --}}
                         <input type="file" class="form-control" name="image" >
                         </div>
                     </div>
@@ -31,7 +30,7 @@
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
-                        <input type="text" class="form-control" required="required" name="name" placeholder="Nama Beasiswa" class="form-control col-md-9 col-xs-12">
+                        <input type="text" class="form-control" required="required" name="name" placeholder="Scholarship Name" class="form-control col-md-9 col-xs-12">
                         </div>
                     </div>
                     <div class="form-group">
@@ -39,45 +38,72 @@
                           <span class="required">*</span>
                         </label>
                         <div class="col-md-9">
-                        <input type="text" class="form-control" name="firm" placeholder="Nama Perusahaan" required="required">
+                        <input type="text" class="form-control" name="firm" placeholder="Company Name" required="required">
                         </div>
                     </div>
 
 
                     <div class="form-group">
-                      <label class="control-label col-md-2">Program
-                        <span class="required">*</span>
-                      </label>
+                      <label class="control-label col-md-2">Program</label>
                       <div class="col-md-9">
-                          <div class="form-check form-check-inline">
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="D3" name="d3">
-                              <label class="form-check-label" for="inlineCheckbox1">D3</label>
-
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S1" name="s1">
-                              <label class="form-check-label" for="inlineCheckbox1">S1</label>
-
-                              <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="S2" name="s2">
-                              <label class="form-check-label" for="inlineCheckbox1">S2</label>
-
-
-                          </div>
+                        <select class="tags form-control program-multi" tabindex="-1" multiple="multiple" name="programs[]">
+                    
+                            <option value="D3">D3</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                    
+                        </select>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
                     </div>
+
                     <div class="form-group">
-                      <label class="control-label col-md-2">Semester
-                        <span class="required">*</span>
-                      </label>
+                      <label class="control-label col-md-2">Semester</label>
                       <div class="col-md-9">
-                      <input type="text" class="form-control" name="semester" placeholder="1-2" required="required">
+                        <select class="tags form-control semester-multi" tabindex="-1" multiple="multiple" name="semesters[]">
+                    
+                            <option value="1;2;3;4;5;6">1-6</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">1</option>
+                            <option value="8">2</option>
+                    
+                        </select>
+                        <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                       </div>
-                   </div>
+                    </div>
+
+                    
+
+
 
                   <div class="form-group">
-                    <label class="control-label col-md-2">Faculty </label>
+                    <label class="control-label col-md-2">Faculty</label>
                     <div class="col-md-9">
-                    <input type="text" class="form-control" name="faculty" placeholder="FMIPA, FATETA" required="required">
+                      <select class="tags form-control faculty-multi" tabindex="-1" multiple="multiple" name="faculties[]">
+                  
+                          <option value="FAPERTA,FKH,FPIK,FAPET,FAHUTAN,FATETA,FMIPA,FEM,FEMA,DIPLOMA,SB">Semua Fakultas</option>
+                          <option value="FAPERTA">A - Fakultas Pertanian</option>
+                          <option value="FKH">B - Fakultas Kedokteran Hewan</option>
+                          <option value="FPIK">C - Fakultas Perikanan dan Ilmu Kelautan</option>
+                          <option value="FAPET">D - Fakultas Peternakan</option>
+                          <option value="FAHUTAN">E - Fakultas Kehutanan</option>
+                          <option value="FATETA">F - Fakultas Teknologi Pertanian</option>
+                          <option value="FMIPA">G - Fakultas Matematikan dan Ilmu Pengetahuan</option>
+                          <option value="FEM">H - Fakultas Ekonomi Manajemen</option>
+                          <option value="FEMA">I - Fakultas Ekologi Manusia</option>
+                          <option value="DIPLOMA">J - Diploma</option>
+                          <option value="SB">Sekolah Bisnis</option>
+                          
+                      </select>
+                      <div id="suggestions-container" style="position: relative; float: left; width: 250px; margin: 10px;"></div>
                     </div>
                   </div>
+
 
                   <div class="form-group">
                     <label class="control-label col-md-2">Minimum GPA</label>
@@ -85,6 +111,7 @@
                     <input type="text" class="form-control" name="gda" placeholder="2.7" required="required">
                     </div>
                   </div>
+                  
 
                   <div class="form-group">
                     <label class="control-label col-md-2">Registration Limit
@@ -105,10 +132,10 @@
 
 
 
-                    <div class="control-group">
+                    <div class="form-group">
                       <label class="control-label col-md-2">Select Tags</label>
                       <div class="col-md-9">
-                        <select class="tags form-control select2-multi" tabindex="-1" multiple="multiple" name="tags[]">
+                        <select class="tags form-control tag-multi" tabindex="-1" multiple="multiple" name="tags[]">
                           @foreach ($tags as $tag)
                             <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                           @endforeach
@@ -150,7 +177,27 @@
   <script>
     CKEDITOR.replace( 'konten' );
   </script>
+
 	<script type="text/javascript">
-		$('.select2-multi').select2();
-	</script>
+		$('.program-multi').select2({
+      placeholder:"Select Program"
+    });
+  </script>
+
+	<script type="text/javascript">
+		$('.semester-multi').select2({
+      placeholder:"Select Semester"
+    });
+  </script>
+	<script type="text/javascript">
+		$('.faculty-multi').select2({
+      placeholder:"Select Faculty"
+    });
+  </script>
+	<script type="text/javascript">
+		$('.tag-multi').select2({
+      placeholder:"Select Tags"
+    });
+  </script>
+ 
 @endsection
